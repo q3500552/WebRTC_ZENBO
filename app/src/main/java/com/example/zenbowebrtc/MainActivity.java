@@ -1,12 +1,11 @@
 package com.example.zenbowebrtc;
 
-import androidx.appcompat.app.AppCompatActivity;
-import pub.devrel.easypermissions.EasyPermissions;
-
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String[] perms = {
-                Manifest.permission.CAMERA,
-                Manifest.permission.RECORD_AUDIO
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.INTERNET
         };
 
         if (!EasyPermissions.hasPermissions(this, perms)) {
@@ -28,13 +28,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onClick(View view) {
-        startActivity(new Intent(MainActivity.this, WebRtcActivity.class));
-    }
-
-    @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    public void onClick(View view) {
+        startActivity(new Intent(MainActivity.this, WebRtcActivity.class));
     }
 }
